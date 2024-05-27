@@ -1,0 +1,29 @@
+body {
+    margin: 0;
+    overflow: hidden;
+}
+
+canvas {
+    width: 100%;
+}
+
+.fps {
+    position: absolute;
+    z-index: 1;
+    color: white;
+    padding: 0 5px;
+}
+
+.settings {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background-color: rgba(57, 57, 57, 0.296);
+    padding: 10px;
+    color: white;
+
+    .item {
+        display: flex;
+        align-items: center;
+    }
+}
