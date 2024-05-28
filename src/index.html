@@ -11,9 +11,32 @@
             <label for="fov">Fov</label>
             <input id="fov" value="90" type="range" min="60" max="120" step="1" >
         </div>
+        <div class="item">
+            <label for="fov">Light XYZ</label>
+            <input id="light_x" value="2" type="number" oninput="changeLightPosition()">
+            <input id="light_y" value="5" type="number" oninput="changeLightPosition()">
+            <input id="light_z" value="5" type="number" oninput="changeLightPosition()">
+        </div>
+
+        <div class="item">
+            <label for="fov">Turn on / off Orbit Controls</label>
+            <input id="orbitcontrols" type="checkbox" onchange="toggleOrbitControls()">
+        </div>
     </div>
     <div class="fps">FPS:</div>
     <canvas class="canvas"></canvas>
+    <script>
+        function changeLightPosition() {
+            const event = new CustomEvent("lightchanged");
+            window.dispatchEvent(event);
+        }
+
+        function toggleOrbitControls() {
+            const event = new CustomEvent("toggleorbitcontrols");
+            window.dispatchEvent(event);
+        }
+        
+    </script>
     <script type="module" src="./script.js"></script>
 </body>
 </html>

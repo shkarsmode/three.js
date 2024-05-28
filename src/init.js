@@ -8,6 +8,12 @@ const init = (isAxesHelper = true) => {
         height: window.innerHeight
     };
 
+    const light_x = document.querySelector('#light_x');
+    const light_y = document.querySelector('#light_y');
+    const light_z = document.querySelector('#light_z');
+
+    const orbitcontrols = document.querySelector('#orbitcontrols');
+
     const scene = new THREE.Scene();
     const canvas = document.querySelector('.canvas');
     const fpsBlock = document.querySelector('.fps');
@@ -19,12 +25,13 @@ const init = (isAxesHelper = true) => {
         localStorage.getItem('fov') ?? 120, sizes.width / sizes.height
     );
 
-    camera.position.z = 3;
+    camera.position.z = 8;
 
     scene.add(camera);
 
     const controls = new OrbitControls(camera, canvas);
     controls.enableDamping = true;
+    controls.enabled = false;
 
     const renderer = new THREE.WebGLRenderer({ canvas });
     renderer.setSize(sizes.width, sizes.height);
@@ -33,7 +40,7 @@ const init = (isAxesHelper = true) => {
     initAxesHelper();
     initViewRangeListener();
     initResizeListener();
-    initKeyboardKeydownListener();
+    // initKeyboardKeydownListener();
 
     function initAxesHelper() {
         if (!isAxesHelper) return;
@@ -75,22 +82,28 @@ const init = (isAxesHelper = true) => {
     }
 
 
-    return { sizes, scene, canvas, camera, renderer, controls, fpsBlock };
+    return { 
+        sizes, 
+        scene, canvas, camera, renderer, controls, fpsBlock, 
+        light_x, light_y, light_z, 
+        orbitcontrols
+    };
 }
 
 export default init;
 
 
 // const geometry = new THREE.BoxGeometry(1, 1, 1, 10, 10, 10);
-// const geometry = new THREE.CircleGeometry(1, 10, Math.PI*0.25, Math.PI);
-// const geometry = new THREE.PlaneGeometry(1, 1, 10, 10);
 // const geometry = new THREE.ConeGeometry(1, 1, 4, 3, true, Math.PI, Math.PI);
-// const geometry = new THREE.CylinderGeometry(1, 1, 2, 6, 3)
 // const geometry = new THREE.RingGeometry(1, 0.8, 20, 2, 0, Math.PI*2)
 // const geometry = new THREE.TorusGeometry(1, 0.9, 20, 10, Math.PI*2)
-// const geometry = new THREE.TorusKnotGeometry(1, 0.2, 100, 4, 2, 5)
 // const geometry = new THREE.DodecahedronGeometry(1.5, 3)
+// const geometry = new THREE.SphereGeometry(1, 16, 16, 0, Math.PI / 2);
+// const geometry = new THREE.TorusKnotGeometry(1, 0.2, 100, 4, 2, 5)
 // const geometry = new THREE.OctahedronGeometry(1, 0)
+// const geometry = new THREE.CylinderGeometry(1, 1, 2, 6, 3)
+
+// const geometry = new THREE.CircleGeometry(1, 10, Math.PI*0.25, Math.PI);
+// const geometry = new THREE.PlaneGeometry(1, 1, 10, 10);
 // const geometry = new THREE.TetrahedronGeometry(1, 0)
 // const geometry = new THREE.IcosahedronGeometry(1, 2)
-// const geometry = new THREE.SphereGeometry(1, 16, 16, 0, Math.PI / 2);

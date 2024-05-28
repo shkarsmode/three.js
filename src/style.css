@@ -27,3 +27,8 @@ canvas {
         align-items: center;
     }
 }
+
+input[type="number"] {
+    margin-left: 3px;
+    width: 50px;
+}

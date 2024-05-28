@@ -7,26 +7,22 @@ const infoColor = (message) =>
     `\u001b[1m\u001b[34m${message}\u001b[39m\u001b[22m`;
 
 module.exports = merge(commonConfiguration, {
-    stats: 'errors-warnings',
     mode: 'development',
-    infrastructureLogging: {
-        level: 'warn',
-    },
+    devtool: 'inline-source-map',
     devServer: {
         host: 'localhost',
         port: 3000,
         open: true,
-        allowedHosts: 'all',
         hot: true,
         watchFiles: ['src/**', 'static/**'],
         static: {
-            watch: true,
             directory: path.join(__dirname, '../static'),
+            publicPath: '/static',
+            watch: true,
         },
         client: {
-            logging: 'none',
             overlay: true,
-            progress: false,
+            logging: 'none',
         },
         onListening: function (devServer) {
             const port = devServer.server.address().port;
@@ -35,9 +31,7 @@ module.exports = merge(commonConfiguration, {
             const domain2 = `http://localhost:${port}`;
 
             console.log(
-                `Project is running at:\n  - ${infoColor(domain1)}\n  - ${infoColor(
-                    domain2
-                )}`
+                `Project is running at:\n  - ${infoColor(domain1)}\n  - ${infoColor(domain2)}`
             );
         },
     },
