@@ -195,9 +195,8 @@ canvas.addEventListener('click', handleClick);
 render();
 
 function updateText(newText) {
-    // Create new geometry with the updated text
     newText = newText.replace(/geometry/ig, '');
-    console.log
+
     const geometry = new TextGeometry(newText, {
         font: font,
         size: 0.3,
