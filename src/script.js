@@ -53,15 +53,15 @@ loader.load('static/fonts/RedditMono.json', (fonts) => {
 
 
 const geometries = [
-    new THREE.BoxGeometry(1, 1, 1),
-    new THREE.ConeGeometry(1, 2, 32, 4),
-    new THREE.TorusGeometry(0.2, 0.5, 10, 20, Math.PI / 2),
-    new THREE.TorusGeometry(0.5, 0.3, 20, 10, Math.PI * 2),
-    new THREE.DodecahedronGeometry(1, 0),
-    new THREE.SphereGeometry(0.8, 16, 16, 0, Math.PI),
-    new THREE.TorusKnotGeometry(0.8, 0.2, 60),
-    new THREE.OctahedronGeometry(0.5, 0),
-    new THREE.CylinderGeometry(.25, 0.5, 1, 16, 3),
+    [new THREE.BoxGeometry(1, 1, 1), 'Box'],
+    [new THREE.ConeGeometry(1, 2, 32, 4), 'Cone'],
+    [new THREE.TorusGeometry(0.2, 0.5, 10, 20, Math.PI / 2), 'Torus'],
+    [new THREE.TorusGeometry(0.5, 0.3, 20, 10, Math.PI * 2), 'Torus'],
+    [new THREE.DodecahedronGeometry(1, 0), 'Dodecahedron'],
+    [new THREE.SphereGeometry(0.8, 16, 16, 0, Math.PI), 'Sphere'],
+    [new THREE.TorusKnotGeometry(0.8, 0.2, 60), 'TorusKnot'],
+    [new THREE.OctahedronGeometry(0.5, 0), 'Octahedron'],
+    [new THREE.CylinderGeometry(.25, 0.5, 1, 16, 3), 'Cylinder'],
 ];
 
 let index = 0;
@@ -72,11 +72,11 @@ for (let x = -5; x <= 5; x += 5) {
             color: 'gray',
             wireframe: true
         });
-        const mesh = new THREE.Mesh(geometries[index], material);
+        const mesh = new THREE.Mesh(geometries[index][0], material);
         
         mesh.position.set(x, y, 0);
         mesh.index = index;
-        mesh.name = mesh.geometry.constructor.name;
+        mesh.name = geometries[index][1]
         mesh.previousPosition = { x, y, z: 0 };
         group.add(mesh);
         ++index;
