@@ -3,8 +3,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 
+// * interactive-group
+// * 3d_model
+const fileName = '3d_model'
+
 module.exports = {
-    entry: path.resolve(__dirname, '../src/script.js'),
+    entry: path.resolve(__dirname, `../src/${fileName}.js`),
     output: {
         hashFunction: 'xxhash64',
         filename: 'bundle.[contenthash].js',
